@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map,  } from 'rxjs/operators';
 import { BookService } from './book-service.service';
 
 @Injectable({
@@ -13,6 +13,9 @@ export class UsersService {
     this.bookService.clickCount.next(4);
     return this.http
       .get('https://randomuser.me/api/')
-      .pipe(map(({ results }: any) => results[0]));
+      .pipe(
+        map(({ results }: any) => results),
+        map(([user]) => user)
+      );
   }
 }

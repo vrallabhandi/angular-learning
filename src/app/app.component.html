@@ -1,7 +1,29 @@
 <app-book *ngFor="let book of books" [book]="book" (clicked)="onBookClicked($event)">
-  <p>This is some content</p> 
+  <p>This is some content</p>
 </app-book>
 
 <button (click)="getRandomUser()">Get Random User</button>
 
-{{ user | json }}
+<!-- {{ user | json }} -->
+
+<!-- {{ user?.name.first | truncate }}
+{{ user?.name.last | truncate:4 }} -->
+
+<br>
+
+<!-- {{user$ | async | json }} -->
+{{ (user$ | async)?.name.first | truncate }}
+
+<!-- <form #f="ngForm" (submit)="onFormSubmit()">
+  Name: <input name="name" #nameField required ngModel />  
+  <p *ngIf="f.controls.name?.touched && f.controls.name?.errors?.required">Name is required</p>
+  <button type="submit">Submit</button>
+</form> -->
+
+<form (submit)="onFormSubmit()">
+  Name: <input type="text" [formControl]="reactiveName" />
+  <br>
+  <button type="submit">Submit</button>
+</form>
+
+{{ name | uppercase }}
